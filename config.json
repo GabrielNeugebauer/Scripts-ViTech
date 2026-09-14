@@ -1,0 +1,9 @@
+{
+    "vtm_binary": "../VTM/VTM_files/bin/EncoderAppStaticd",
+    "cfg_dir": "../VTM/VTM_files/cfg",
+    "per_sequence_dir": "../VTM/VTM_files/cfg/per-sequence",
+    "videos_dir": "../VTM/videos_referencia",
+    "bin_output_dir": "../VTM/bin_outputs",
+    "reports_dir": "../VTM/relatorios_execucao",
+    "extra_args": ""
+}
