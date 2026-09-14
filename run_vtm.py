@@ -232,8 +232,16 @@ def main():
                 pass
         return 100 # Default fallback se não conseguir achar
 
+    def get_qp_weight(qp):
+        if qp == 37: return 1
+        elif qp == 32: return 2
+        elif qp == 27: return 3
+        elif qp == 22: return 4
+        return 1
+
     tasks = []
     total_pocs_global = 0
+    total_pocs_global_weighted = 0
     # Monta a lista de tarefas
     for vid in selected_videos:
         match = re.search(r'_(\d+)x(\d+)_(\d+)\.yuv$', vid, re.IGNORECASE)
@@ -271,8 +279,10 @@ def main():
                 cmd.extend(extra_args.split())
 
             task_pocs = get_total_pocs(vid_path, vid_seq_cfg, w, h, frames_to_encode)
+            weight = get_qp_weight(qp)
             total_pocs_global += task_pocs
-            tasks.append((vid, qp, cmd, report_out, task_pocs))
+            total_pocs_global_weighted += (task_pocs * weight)
+            tasks.append((vid, qp, cmd, report_out, task_pocs, weight))
 
     total_tasks = len(tasks)
     print(f"\n========================================")
@@ -286,11 +296,12 @@ def main():
     print(f"--> Iniciando execuções com até {threads_avail} threads em paralelo...\n")
 
     completed_pocs_global = 0
+    completed_pocs_global_weighted = 0
     results_summaries = {}
     lock = threading.Lock()
     
     def update_bar():
-        percent = (completed_pocs_global / total_pocs_global) * 100 if total_pocs_global else 0
+        percent = (completed_pocs_global_weighted / total_pocs_global_weighted) * 100 if total_pocs_global_weighted else 0
         bar_len = 40
         filled = int(bar_len * percent // 100)
         bar = '█' * filled + '-' * (bar_len - filled)
@@ -307,8 +318,8 @@ def main():
     update_bar()
 
     def run_task(task):
-        nonlocal completed_pocs_global
-        vid, qp, cmd, report_out, task_total_pocs = task
+        nonlocal completed_pocs_global, completed_pocs_global_weighted
+        vid, qp, cmd, report_out, task_total_pocs, weight = task
         task_id = f"{vid[:12]}_Q{qp}"
         
         print_msg(f"[ Iniciando ] {task_id}")
@@ -324,6 +335,7 @@ def main():
                     if line.lstrip().startswith("POC") or "POC " in line:
                         with lock:
                             completed_pocs_global += 1
+                            completed_pocs_global_weighted += weight
                             task_pocs_done += 1
                         print_msg(f"[{task_id}] {line.strip()}")
                 process.wait()
@@ -352,6 +364,7 @@ def main():
             remaining = task_total_pocs - task_pocs_done
             if remaining > 0:
                 completed_pocs_global += remaining
+                completed_pocs_global_weighted += (remaining * weight)
             
             sys.stdout.write("\r\033[K")
             sys.stdout.write(f"========================================\n")
