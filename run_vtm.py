@@ -239,6 +239,15 @@ def main():
         elif qp == 22: return 4
         return 1
 
+    def get_resolution_weight(w, h):
+        if w and h:
+            try:
+                # Usa como base o valor sugerido de 108160 pixels para normalização
+                return (int(w) * int(h)) / 108160.0
+            except ValueError:
+                pass
+        return 1.0
+
     tasks = []
     total_pocs_global = 0
     total_pocs_global_weighted = 0
@@ -279,7 +288,10 @@ def main():
                 cmd.extend(extra_args.split())
 
             task_pocs = get_total_pocs(vid_path, vid_seq_cfg, w, h, frames_to_encode)
-            weight = get_qp_weight(qp)
+            qp_weight = get_qp_weight(qp)
+            res_weight = get_resolution_weight(w, h)
+            weight = qp_weight * res_weight
+            
             total_pocs_global += task_pocs
             total_pocs_global_weighted += (task_pocs * weight)
             tasks.append((vid, qp, cmd, report_out, task_pocs, weight))
