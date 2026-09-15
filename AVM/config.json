@@ -1,6 +1,6 @@
 {
-    "avm_binary": "../../AVM/avm_build/aomenc",
-    "cfg_dir": "../../AVM/cfg",
+    "avm_binary": "../../AVM/avm_files/avmenc",
+    "cfg_dir": "./cfg",
     "videos_dir": "../../AVM/videos_referencia",
     "bin_output_dir": "../../AVM/bin_outputs",
     "reports_dir": "../../AVM/relatorios_execucao",
