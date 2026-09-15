@@ -79,7 +79,7 @@ def main():
     main_cfgs = []
     if os.path.exists(cfg_dir):
         for f in os.listdir(cfg_dir):
-            if f.lower().endswith(".cfg") and os.path.isfile(os.path.join(cfg_dir, f)):
+            if f.lower().endswith(".cfg") and not f.lower().startswith("class_") and os.path.isfile(os.path.join(cfg_dir, f)):
                 main_cfgs.append(f)
     main_cfgs.sort()
 
@@ -112,10 +112,13 @@ def main():
     # 2. SELEÇÃO DE VÍDEOS
     video_files = []
     if os.path.exists(videos_dir):
-        for f in os.listdir(videos_dir):
-            if f.lower().endswith(".yuv") or f.lower().endswith(".y4m"):
-                video_files.append(f)
-    video_files.sort()
+        for root, _, files in os.walk(videos_dir):
+            for f in files:
+                if f.lower().endswith(".yuv") or f.lower().endswith(".y4m"):
+                    rel_path = os.path.relpath(os.path.join(root, f), videos_dir)
+                    class_name = os.path.basename(root)
+                    video_files.append({"filename": f, "rel_path": rel_path, "class_name": class_name, "abs_path": os.path.join(root, f)})
+    video_files.sort(key=lambda x: x["rel_path"])
 
     if not video_files:
         print(f"Nenhum vídeo .yuv ou .y4m encontrado na pasta: {videos_dir}")
@@ -125,7 +128,7 @@ def main():
     print("           SELEÇÃO DE VÍDEOS            ")
     print("========================================")
     for idx, v in enumerate(video_files, 1):
-        print(f"[{idx}] {v}")
+        print(f"[{idx}] {v['rel_path']}")
     print("========================================")
     
     vid_sel = input("Selecione os vídeos (ex: 1,2,3 ou 1-3,5): ")
@@ -198,7 +201,11 @@ def main():
     total_pocs_global = 0
     total_pocs_global_weighted = 0
     # Monta a lista de tarefas
-    for vid in selected_videos:
+    for vid_info in selected_videos:
+        vid = vid_info["filename"]
+        vid_path = vid_info["abs_path"]
+        class_name = vid_info["class_name"]
+        
         w, h, fr = None, None, None
         if vid.lower().endswith(".yuv"):
             match = re.search(r'_(\d+)x(\d+)_(\d+)\.yuv$', vid, re.IGNORECASE)
@@ -207,7 +214,6 @@ def main():
                 h = match.group(2)
                 fr = match.group(3)
         
-        vid_path = os.path.join(videos_dir, vid)
         base_name = os.path.splitext(vid)[0]
 
         for qp in selected_qps:
@@ -220,6 +226,13 @@ def main():
                 if arg.startswith('--qp='):
                     continue
                 cmd.append(arg)
+                
+            # Load class config if exists
+            class_cfg_path = os.path.join(cfg_dir, f"class_{class_name}.cfg")
+            if os.path.exists(class_cfg_path):
+                with open(class_cfg_path, 'r') as f_class:
+                    class_args = f_class.read().replace('\n', ' ').split()
+                    cmd.extend(class_args)
             
             cmd.append(f"--qp={qp}")
             cmd.extend(["-o", bin_out])
