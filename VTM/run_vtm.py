@@ -110,9 +110,12 @@ def main():
     # 2. SELEÇÃO DE VÍDEOS
     video_files = []
     if os.path.exists(videos_dir):
-        for f in os.listdir(videos_dir):
-            if f.lower().endswith(".yuv"):
-                video_files.append(f)
+        for root, dirs, files in os.walk(videos_dir):
+            for f in files:
+                if f.lower().endswith(".yuv"):
+                    rel_path = os.path.relpath(os.path.join(root, f), videos_dir)
+                    rel_path = rel_path.replace(os.sep, '/')
+                    video_files.append(rel_path)
     video_files.sort()
 
     if not video_files:
@@ -122,8 +125,28 @@ def main():
     print("\n========================================")
     print("           SELEÇÃO DE VÍDEOS            ")
     print("========================================")
-    for idx, v in enumerate(video_files, 1):
-        print(f"[{idx}] {v}")
+    tree = {}
+    for idx, path in enumerate(video_files, 1):
+        parts = path.split('/')
+        current = tree
+        for part in parts[:-1]:
+            current = current.setdefault(part, {})
+        current[parts[-1]] = idx
+
+    def _print_tree(node, prefix=""):
+        items = sorted(node.items())
+        for i, (key, value) in enumerate(items):
+            is_last = i == (len(items) - 1)
+            connector = "└── " if is_last else "├── "
+            if isinstance(value, dict):
+                print(f"{prefix}{connector}{key}/")
+                extension = "    " if is_last else "│   "
+                _print_tree(value, prefix + extension)
+            else:
+                print(f"{prefix}{connector}[{value}] {key}")
+
+    if tree:
+        _print_tree(tree)
     print("========================================")
     
     vid_sel = input("Selecione os vídeos (ex: 1,2,3 ou 1-3,5): ")
@@ -151,7 +174,7 @@ def main():
 
     video_seq_cfg_map = {}
     for vid in selected_videos:
-        base_name = vid.split('_')[0]
+        base_name = os.path.basename(vid).split('_')[0]
         suggested_idx = None
         for idx, cfg in enumerate(seq_cfgs, 1):
             if cfg.lower().startswith(base_name.lower()):
@@ -213,6 +236,36 @@ def main():
         except ValueError:
             print("Entrada inválida. Todos os frames serão codificados.")
 
+    # 6. SELEÇÃO DE CENÁRIOS (FERRAMENTAS)
+    scenarios = [
+        {"id": 1, "name": "Padrão (Sem argumentos extras)", "args": [], "suffix": ""},
+        {"id": 2, "name": "All_OFF (Affine=0, PROF=0, BIO=0)", "args": ["--Affine=0", "--PROF=0", "--BIO=0"], "suffix": "_All_OFF"},
+        {"id": 3, "name": "BIO_ON (Affine=0, PROF=0, BIO=1)", "args": ["--Affine=0", "--PROF=0", "--BIO=1"], "suffix": "_BIO_ON"},
+        {"id": 4, "name": "Affine_ON (Affine=1, PROF=0, BIO=0)", "args": ["--Affine=1", "--PROF=0", "--BIO=0"], "suffix": "_Affine_ON"},
+        {"id": 5, "name": "Affine_PROF_ON (Affine=1, PROF=1, BIO=0)", "args": ["--Affine=1", "--PROF=1", "--BIO=0"], "suffix": "_Affine_PROF_ON"},
+        {"id": 6, "name": "Affine_BIO_ON (Affine=1, PROF=0, BIO=1)", "args": ["--Affine=1", "--PROF=0", "--BIO=1"], "suffix": "_Affine_BIO_ON"},
+        {"id": 7, "name": "All_ON (Anchor) (Affine=1, PROF=1, BIO=1)", "args": ["--Affine=1", "--PROF=1", "--BIO=1"], "suffix": "_All_ON"}
+    ]
+    
+    print("\n========================================")
+    print("         SELEÇÃO DE CENÁRIOS            ")
+    print("========================================")
+    for sc in scenarios:
+        print(f"[{sc['id']}] {sc['name']}")
+    print("========================================")
+    sc_sel = input("Selecione os cenários (ex: 2-7, ou deixe em branco para Padrão): ").strip()
+    
+    selected_scenarios = []
+    if not sc_sel:
+        selected_scenarios.append(scenarios[0])
+    else:
+        sc_indices = parse_selection(sc_sel, len(scenarios))
+        if not sc_indices:
+            print("Nenhum cenário selecionado válido. Usando Padrão.")
+            selected_scenarios.append(scenarios[0])
+        else:
+            selected_scenarios = [scenarios[i-1] for i in sc_indices]
+
     def get_total_pocs(vid_path, vid_seq_cfg, w, h, frames_to_encode):
         if frames_to_encode:
             return frames_to_encode
@@ -261,40 +314,45 @@ def main():
             fr = match.group(3)
         
         vid_path = os.path.join(videos_dir, vid)
-        base_name = os.path.splitext(vid)[0]
+        base_name_full = os.path.splitext(os.path.basename(vid))[0]
         vid_seq_cfg = video_seq_cfg_map[vid]
 
         for qp in selected_qps:
-            bin_out = os.path.join(bin_dir, f"{base_name}_QP{qp}.bin")
-            report_out = os.path.join(reports_dir, f"{base_name}_QP{qp}.log")
-            
-            cmd = [
-                vtm_bin,
-                "-c", selected_main_cfg,
-                "-c", vid_seq_cfg,
-                "-i", vid_path,
-                "-q", str(qp),
-                "-b", bin_out
-            ]
-            
-            if w and h:
-                cmd.extend(["-wdt", w, "-hgt", h])
-            if fr:
-                cmd.extend(["-fr", fr])
-            if frames_to_encode:
-                cmd.extend(["-f", str(frames_to_encode)])
-            
-            if extra_args:
-                cmd.extend(extra_args.split())
+            for sc in selected_scenarios:
+                suffix = sc['suffix']
+                bin_out = os.path.join(bin_dir, f"{base_name_full}_QP{qp}{suffix}.bin")
+                report_out = os.path.join(reports_dir, f"{base_name_full}_QP{qp}{suffix}.log")
+                
+                cmd = [
+                    vtm_bin,
+                    "-c", selected_main_cfg,
+                    "-c", vid_seq_cfg,
+                    "-i", vid_path,
+                    "-q", str(qp),
+                    "-b", bin_out
+                ]
+                
+                if w and h:
+                    cmd.extend(["-wdt", w, "-hgt", h])
+                if fr:
+                    cmd.extend(["-fr", fr])
+                if frames_to_encode:
+                    cmd.extend(["-f", str(frames_to_encode)])
+                
+                if sc['args']:
+                    cmd.extend(sc['args'])
+                
+                if extra_args:
+                    cmd.extend(extra_args.split())
 
-            task_pocs = get_total_pocs(vid_path, vid_seq_cfg, w, h, frames_to_encode)
-            qp_weight = get_qp_weight(qp)
-            res_weight = get_resolution_weight(w, h)
-            weight = qp_weight * res_weight
-            
-            total_pocs_global += task_pocs
-            total_pocs_global_weighted += (task_pocs * weight)
-            tasks.append((vid, qp, cmd, report_out, task_pocs, weight))
+                task_pocs = get_total_pocs(vid_path, vid_seq_cfg, w, h, frames_to_encode)
+                qp_weight = get_qp_weight(qp)
+                res_weight = get_resolution_weight(w, h)
+                weight = qp_weight * res_weight
+                
+                total_pocs_global += task_pocs
+                total_pocs_global_weighted += (task_pocs * weight)
+                tasks.append((vid, qp, suffix, cmd, report_out, task_pocs, weight))
 
     total_tasks = len(tasks)
     print(f"\n========================================")
@@ -331,8 +389,9 @@ def main():
 
     def run_task(task):
         nonlocal completed_pocs_global, completed_pocs_global_weighted
-        vid, qp, cmd, report_out, task_total_pocs, weight = task
-        task_id = f"{vid[:12]}_Q{qp}"
+        vid, qp, suffix, cmd, report_out, task_total_pocs, weight = task
+        suf_clean = suffix.replace('_', '-')
+        task_id = f"{os.path.basename(vid)[:10]}_Q{qp}{suf_clean}"
         
         print_msg(f"[ Iniciando ] {task_id}")
             
