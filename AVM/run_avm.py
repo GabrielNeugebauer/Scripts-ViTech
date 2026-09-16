@@ -220,7 +220,7 @@ def main():
             bin_out = os.path.join(bin_dir, f"{base_name}_QP{qp}.obu")
             report_out = os.path.join(reports_dir, f"{base_name}_QP{qp}.log")
             
-            cmd = [avm_bin]
+            cmd = ["stdbuf", "-e0", "-o0", avm_bin]
             
             for arg in cfg_args:
                 if arg.startswith('--qp='):
