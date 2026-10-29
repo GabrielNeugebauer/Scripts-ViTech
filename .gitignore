@@ -1,3 +1,6 @@
 *rec.yuv
 *config.json
 VTM/config.json
+.venv/
+__pycache__/
+Analysis/results/
