@@ -3,7 +3,7 @@
 
 Interactive (prompts in Portuguese). Paths come from config.json, next to this script.
 The binaries are the AV2-Android builds (build/<decoder>-<arch>/tools/<decoder>). They go to <remote_dir>, in the
-layout of AV2-Android/scripts/install_phone.sh, because Android mounts the shared storage noexec. The files to open
+layout of AV2-Android/scripts/install_phone.py, because Android mounts the shared storage noexec. The files to open
 on the phone (streams, VERSIONS, the installation report) go to <shared_dir>, in Downloads.
 """
 import datetime

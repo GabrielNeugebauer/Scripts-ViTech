@@ -23,7 +23,7 @@ run_vtm_decoder.py  → decoder logs + tempos_decodificacao.csv ──→ (copie
 
 - **Interactive:** they ask the questions in the terminal (in Portuguese), as numbered menus. Selections accept lists and ranges, such as `1,2,3` or `1-3,5`.
 - **Config:** the paths come from a `config.json` in the script's folder. Run each script from its own folder (`cd VTM` or `cd AVM`), since the paths are relative to it. `config.json` is git-ignored because the paths differ on each machine.
-- **Parallel:** encodings run in parallel. The encoders use up to `cpu_count − 1` threads, and the decoder asks how many to use.
+- **Parallel:** encodings run in parallel. The encoders use up to `cpu_count − 1` threads, and the decoder asks how many to use. `run_vtm.py` and `run_avm.py` start with the lightest encodings (smallest videos, highest QPs), so the first bitstreams are ready early.
 - **Logs:** each execution writes a full log. The terminal shows a global progress bar and a summary when each task finishes.
 - **Ctrl+C** cancels the run.
 
@@ -137,7 +137,7 @@ What it applies from the CTC v9:
 
 **AV1 QPs:** `aomenc` takes `--cq-level` (0–63), not a qindex. The script uses the cq-level whose qindex is closest to the CTC qindex (110→28, 135→34, 160→40, 185→46, 210→53, 235→59). Standard libaom and AVM have different quantizer step tables, so the same qindex doesn't give the same quality: AV1 comes out at a much higher bitrate at the high QPs. The CTC's own AV1 anchor (`research-alt-v1-anchor_r4.0`) extends the quantizer range, but its streams aren't standard AV1 and dav1d can't decode them.
 
-Jobs run in parallel. Each job reserves as many threads as its tiling uses, up to `threads` in total, largest jobs first. A job whose stream and time logs already exist with exit status 0 is skipped, so a run can be restarted after Ctrl+C. 4K jobs use several GB of RAM each, so lower `threads` if memory runs out.
+Jobs run in parallel. Each job reserves as many threads as its tiling uses, up to `threads` in total. The smallest videos run first (highest QP first within a video), so the first streams are ready early. A job whose stream and time logs already exist with exit status 0 is skipped, so a run can be restarted after Ctrl+C. 4K jobs use several GB of RAM each, so lower `threads` if memory runs out.
 
 Outputs, with `<run>` = the configuration name (plus `_verificacao` in verification mode):
 
@@ -154,7 +154,7 @@ The decoded MD5 is the reference to check `dav2d`/`dav1d` output against on the 
 
 ## `Android/install_decoders.py`: dav2d and dav1d on the phone
 
-Pushes the decoders built in `AV2-Android` to an Android phone over adb, in the same layout as `AV2-Android/scripts/install_phone.sh`, so the AV2-Android scripts (`phone_smoke_test.sh`, `bench.py`) use what it installs. Build the decoders first with `AV2-Android/scripts/build_dav2d.sh` and `build_dav1d.sh`.
+Pushes the decoders built in `AV2-Android` to an Android phone over adb, in the same layout as `AV2-Android/scripts/install_phone.py`, so the AV2-Android scripts (`phone_smoke_test.py`, `bench.py`) use what it installs. Build the decoders first with `AV2-Android/scripts/build_dav2d.sh` and `build_dav1d.sh`.
 
 On the first run it creates `config.json` with default values and exits.
 

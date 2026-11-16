@@ -414,7 +414,9 @@ def main():
                     "conforme": frames == ctc_frames and not extra and v["md5_ok"] is True,
                     "work": info["width"] * info["height"] * frames,
                 })
-    jobs.sort(key=lambda j: j["work"] * j["threads"], reverse=True)
+    # Smallest videos first (pixels x frames), and the highest QP (fastest encode) first within a video, so the
+    # first streams are ready early.
+    jobs.sort(key=lambda j: (j["work"], -j["qp"], j["codec"]))
 
     total_slots = config["threads"] or max(1, (os.cpu_count() or 2) - 1)
     print("\n========================================")

@@ -354,6 +354,9 @@ def main():
                 total_pocs_global_weighted += (task_pocs * weight)
                 tasks.append((vid, qp, suffix, cmd, report_out, task_pocs, weight))
 
+    # Execuções mais leves primeiro (frames x resolução x peso do QP), para os primeiros bitstreams ficarem prontos cedo
+    tasks.sort(key=lambda t: t[5] * t[6])
+
     total_tasks = len(tasks)
     print(f"\n========================================")
     print(f" Total de {total_tasks} execuções programadas.")
