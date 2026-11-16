@@ -1,0 +1,562 @@
+{
+ "BoxingPractice_3840x2160_5994fps_10bit_420": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "bc68da64c0c2d88c7c5e666d2cb760eb"
+ },
+ "Crosswalk_3840x2160_5994fps_10bit_420": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "f53dedacb86f16d24f49e2416db46aa2"
+ },
+ "FoodMarket2_3840x2160_5994fps_10bit_420": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "1741e614b486679397b161bb9a5a584d"
+ },
+ "Neon1224_3840x2160_2997fps": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "29.97",
+  "bit_depth": 10,
+  "md5": "139d81dab11673da3a349b71e66680c0"
+ },
+ "NocturneDance_3840x2160p_10bit_60fps": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "60",
+  "bit_depth": 10,
+  "md5": "e0728b9e40cb3d53c98eab8fe22f6e1b"
+ },
+ "PierSeaSide_3840x2160_2997fps_10bit_420_v2": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "29.97",
+  "bit_depth": 10,
+  "md5": "ce54fc1bdd7408dc94932bc7a5ecc67a"
+ },
+ "Tango_3840x2160_5994fps_10bit_420": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "98c6fe8a6cd30e3e337123fe164beda8"
+ },
+ "TimeLapse_3840x2160_5994fps_10bit_420": {
+  "class": "A1",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "3049e77714307d81fc4c0ecb6ea437d3"
+ },
+ "Aerial3200_1920x1080_5994_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "36a9047adadc01ebcdc8ec062fcb710d"
+ },
+ "Boat_1920x1080_5994_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "38be73be3e9e00520dd5fb5fbc238c16"
+ },
+ "CrowdRun_1920x1080p50": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "50",
+  "bit_depth": 8,
+  "md5": "cbabdc85baf9b50cb14dbdf83e432226"
+ },
+ "DinnerSceneCropped_1920x1080_2997fps_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "29.97",
+  "bit_depth": 10,
+  "md5": "c4e1ba92a9d289cb214355f291f0e1a2"
+ },
+ "FoodMarket_1920x1080_5994_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "169791ee8f32b920e4151a8133b9a849"
+ },
+ "GregoryScarf_1080x1920p30_yuv420p10le_130frames": {
+  "class": "A2",
+  "resolution": "1080x1920",
+  "fps": "30",
+  "bit_depth": 10,
+  "md5": "bd8c00761421810f1c9206a838a67236"
+ },
+ "MeridianTalk_sdr_1920x1080p_5994_10bit": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "ca3e32036cc40cb99af8a70b17d126cf"
+ },
+ "Motorcycle_1920x1080_30fps_8bit": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "5cfdfe0fccc9392815a662839a01cdf4"
+ },
+ "OldTownCross_1920x1080p50": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "50",
+  "bit_depth": 8,
+  "md5": "dc607b8a517cb031403c97f9ac642935"
+ },
+ "PedestrianArea_1920x1080p25": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "25",
+  "bit_depth": 8,
+  "md5": "2ded1b2064ee0c32ec07aa8bf6b3abf1"
+ },
+ "RitualDance_1920x1080_5994_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "6bb5835fcb421021b1dadd5384bac424"
+ },
+ "Riverbed_1920x1080p25": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "25",
+  "bit_depth": 8,
+  "md5": "e4170a0ade450fb9b6d06d74c7656cf8"
+ },
+ "RushFieldCuts_1920x1080_2997": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "0f652c54c6b5fb1fe77bb366f4eb4a55"
+ },
+ "Skater227_1920x1080_30fps": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 10,
+  "md5": "dce66dd6db8e9bf51782396f40e975a5"
+ },
+ "ToddlerFountainCropped_1080x1080p2997_yuv420p10le_130frames": {
+  "class": "A2",
+  "resolution": "1080x1080",
+  "fps": "29.97",
+  "bit_depth": 10,
+  "md5": "df493e6bc64beb45cf09e14eb7b1269e"
+ },
+ "TreesAndGrass_1920_1080_30fps_8bit": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "8e27a24fad8b0c60b3e1afd924c88d02"
+ },
+ "TunnelFlag_1920x1080_5994_10bit_420": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "d216bc59bc4242512dff87227ad6d1ae"
+ },
+ "Vertical_bees_1080x1920_2997": {
+  "class": "A2",
+  "resolution": "1080x1920",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "14cc7326a6b201f838380868ff2b7ee7"
+ },
+ "WorldCup_1920x1080_30p": {
+  "class": "A2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "a001d0da92125138093dfb94931c1337"
+ },
+ "ControlledBurn_1280x720p30_420": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "875d857d8ef1b7f1b653c4c530669005"
+ },
+ "DrivingPOV_1280x720p_5994_10bit_420": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "dca294b0f589f7bc40be921447f8c88a"
+ },
+ "Johnny_1280x720_60": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "1d6aab4003385c255262a88f4df7cccc"
+ },
+ "KristenAndSara_1280x720_60": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "43bb17b78086d0183642c7b74cc1c903"
+ },
+ "RollerCoaster_1280x720p_5994_10bit_420": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "502eb30ee5f771cb8b367c36bbdc27db"
+ },
+ "Vidyo3_1280x720p_60fps": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "706f830c649a143f1e14ac91542286cd"
+ },
+ "Vidyo4_1280x720p_60fps": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "c321577a882a70fb2a41f706ff8c921c"
+ },
+ "WestWindEasy_1280x720p30_420": {
+  "class": "A3",
+  "resolution": "1280x720",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "da8afe9c91a260c835b39f58b13c99e7"
+ },
+ "BlueSky_360p25_v2": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "25",
+  "bit_depth": 8,
+  "md5": "722261f9e84578203ea9486673ffb274"
+ },
+ "RedKayak_360_2997": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "4205131788b94668c4feef73ce44aec9"
+ },
+ "SnowMountain_640x360_2997": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "63ae6b7fb786883c2144552e98d0c4dd"
+ },
+ "SpeedBag_640x360_2997": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "8bfe53f0215b749744b3947e16ab09a4"
+ },
+ "Stockholm_640x360_5994": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "59.94",
+  "bit_depth": 8,
+  "md5": "62d126930a6c8f61f5267f0b21746cde"
+ },
+ "TouchdownPass_640x360_2997": {
+  "class": "A4",
+  "resolution": "640x360",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "dd98868ad8286eb0fb0b8c00827098a1"
+ },
+ "FourPeople_480x270_60": {
+  "class": "A5",
+  "resolution": "480x270",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "4d35db57a2377e4211134db345dea225"
+ },
+ "ParkJoy_480x270_50": {
+  "class": "A5",
+  "resolution": "480x270",
+  "fps": "50",
+  "bit_depth": 8,
+  "md5": "1bda17e3839c46f1586bffcadac5ef42"
+ },
+ "SparksElevator_480x270p_5994_10bit": {
+  "class": "A5",
+  "resolution": "480x270",
+  "fps": "59.94",
+  "bit_depth": 10,
+  "md5": "fffac95c021a2b9b8555591015e3cf9a"
+ },
+ "Vertical_Bayshore_270x480_2997": {
+  "class": "A5",
+  "resolution": "270x480",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "6ec078264f2ae2c99e2fbe108b774847"
+ },
+ "CosmosTreeTrunk_sdr_2048x858_25_8bit": {
+  "class": "B1",
+  "resolution": "2048x858",
+  "fps": "24",
+  "bit_depth": 8,
+  "md5": "1595459d9d4c79eb14f90d7beb098940"
+ },
+ "EuroTruckSimulator2_1920x1080p60_v2": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "db25b6588cf79bd8cc15d81834ca6bc3"
+ },
+ "GlassHalf_1920x1080p_24p_8bit_420": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "24",
+  "bit_depth": 8,
+  "md5": "c91eb60c3953dd7dee1bf04aa8fad3e6"
+ },
+ "Life_1080p30_v2": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "db6ea74f7cbd64c4977bcd144660e332"
+ },
+ "MINECRAFT_1080p_60_8bit": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "a7299bdf79b8a679521044f70683ac86"
+ },
+ "Sniper_1920x1080P_30fps_8bit": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "6202f6729d3a36e248684cff5e451ae4"
+ },
+ "SolLevanteDragons_sdr_1920x1080_24_10bit": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "24",
+  "bit_depth": 10,
+  "md5": "8803aeec213f0a21cf238ecfa0a9314b"
+ },
+ "SolLevanteFace_sdr_1920x1080_24_10bit": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "24",
+  "bit_depth": 10,
+  "md5": "ac8f1feec169413b1896e7e51089640a"
+ },
+ "STARCRAFT_1080p60": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "a2eb4cc3823575e6522e45f463a678ac"
+ },
+ "WITCHER3_1920x1080_60_8bit_420": {
+  "class": "B1",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "cb150ab509b93a9a44080c416e00c9d7"
+ },
+ "BigBuckBunnyStudio1_1920x1080_60fps_10bit_420_020_0149": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 10,
+  "md5": "dc33dc8d529614f08a0f06d8e2436cab"
+ },
+ "Debugging_1920x1080_30fps_8bit_420": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "894eebe772ff66c44e73ac6db5f64bc2"
+ },
+ "MissionControlClip1_1920x1080_60fps_10bit_420_0450_0579": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 10,
+  "md5": "c6b3a7dfabd9f24f1f21dd06e7a5ed79"
+ },
+ "MobileDeviceScreenSharing": {
+  "class": "B2",
+  "resolution": "1078x2220",
+  "fps": "15",
+  "bit_depth": 8,
+  "md5": "360460f9c70fceaafac5ff024f8cdfa0"
+ },
+ "SceneComposition_2": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "15",
+  "bit_depth": 8,
+  "md5": "e543b3fca4620f31fc4e95f4c2964361"
+ },
+ "Slides1_1920x1080_30fps_8bit_420": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "87a70471a8450e98c6e01093bbb0d875"
+ },
+ "Slides2r_1920x1080_30fps_8bit_420": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "fb647e20fe299ec72cc1fcb885dcf23f"
+ },
+ "Spreadsheet_1920x1080_30fps_8bit_420_130f": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "c8656a9bd40eb3493cbf8300faa5c5a7"
+ },
+ "Wikipedia_1920x1080p30": {
+  "class": "B2",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "73f1a07a9205f4496f7dbd1b0cc3ab10"
+ },
+ "Artistic_Concert_1920x1080_25fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "25",
+  "bit_depth": 8,
+  "md5": "932c06e8d91a88440a7b63007543fabc"
+ },
+ "Artistic_Intro_1920x1080_2997fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "5630f7a362a3c21e78bab148482f1a30"
+ },
+ "MixedCoding_NewsIntroAnchor_1280x720_2997fps": {
+  "class": "E",
+  "resolution": "1280x720",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "e86dc11f07b807d451507ec3d4dee04c"
+ },
+ "MixedCoding_NewsIntroOnly_1280x720_2997fps": {
+  "class": "E",
+  "resolution": "1280x720",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "68aa1de52339410ec4dcd0d3617b8075"
+ },
+ "MountainBike_1920x1080_30fps_8bit": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "0cee002a42b85abc5d3f54d79bed9d6c"
+ },
+ "Noise_AnimationCrayon_1920x1080_2398fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "23.98",
+  "bit_depth": 8,
+  "md5": "3a74b8c9fbab0ffaeda78e5be8de3f82"
+ },
+ "Noise_Animation_1280x720_2398fps": {
+  "class": "E",
+  "resolution": "1280x720",
+  "fps": "23.98",
+  "bit_depth": 8,
+  "md5": "e68ab7c2dd679da8798ccdbfe5f2cdd2"
+ },
+ "Noise_Ocean_1920x1080_60fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "60",
+  "bit_depth": 8,
+  "md5": "2a568ca797530a398ef7ed9261b52436"
+ },
+ "Noise_Soccer_1920x1080_50fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "50",
+  "bit_depth": 8,
+  "md5": "867db8d23d1ed7e39c4ac350a7b48490"
+ },
+ "Shaky_Baseball_3840x2160_5994fps": {
+  "class": "E",
+  "resolution": "3840x2160",
+  "fps": "59.94",
+  "bit_depth": 8,
+  "md5": "c1c3523304c1092772ad096bd8c48f55"
+ },
+ "Shaky_Fireworks_3840x2160_2997fps": {
+  "class": "E",
+  "resolution": "3840x2160",
+  "fps": "29.97",
+  "bit_depth": 8,
+  "md5": "71c9f8a87f0da64d27fa18f2f5924eb7"
+ },
+ "Shaky_Quad_1920x1080_30fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "e2a124d442fbba49f31507add888434b"
+ },
+ "Shaky_Walk_1920x1080_25fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "25",
+  "bit_depth": 8,
+  "md5": "069e589e05706720c28a48a9b0c7b76c"
+ },
+ "Vertical_Carnaby_1080x1920_5994": {
+  "class": "E",
+  "resolution": "1080x1920",
+  "fps": "59.94",
+  "bit_depth": 8,
+  "md5": "c25e250593bbe1bb054a0f2d25e4c05b"
+ },
+ "WalkingInStreet_1920x1080_30fps": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "5b118d38d7528f33a4d8df379a9c3b25"
+ },
+ "WorldCup_far_1920x1080_30p": {
+  "class": "E",
+  "resolution": "1920x1080",
+  "fps": "30",
+  "bit_depth": 8,
+  "md5": "6d87c49d487c1479d524bdbd2e6549dd"
+ }
+}
