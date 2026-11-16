@@ -7,6 +7,7 @@ Scripts to run the reference encoders and decoders over the test sequences, and 
 | `VTM/`      | `run_vtm.py`                                                                | Encodes sequences with the VVC reference encoder (VTM), with the Affine/PROF/BDOF scenarios                |
 | `VTM/`      | `run_vtm_decoder.py`                                                        | Decodes the VTM bitstreams and measures the decoding time                                                  |
 | `AVM/`      | `run_avm.py`                                                                | Encodes the AOM AV2 CTC v9 sequences with AV2 (AVM) and AV1 (libaom), following the CTC v9                 |
+| `Android/`  | `install_decoders.py`                                                       | Installs dav2d and dav1d (and checkasm) on an Android phone over adb and checks them                       |
 | `Analysis/` | `bd_metrics.py`, `summary_stats.py`, `make_figures.py`, `decode_metrics.py` | BD-Rate, BD-PSNR, EncT/DecT, summary tables and figures. See [`Analysis/README.md`](Analysis/README.md) |
 
 ```
@@ -150,6 +151,39 @@ Outputs, with `<run>` = the configuration name (plus `_verificacao` in verificat
 ```
 
 The decoded MD5 is the reference to check `dav2d`/`dav1d` output against on the phones.
+
+## `Android/install_decoders.py`: dav2d and dav1d on the phone
+
+Pushes the decoders built in `AV2-Android` to an Android phone over adb, in the same layout as `AV2-Android/scripts/install_phone.sh`, so the AV2-Android scripts (`phone_smoke_test.sh`, `bench.py`) use what it installs. Build the decoders first with `AV2-Android/scripts/build_dav2d.sh` and `build_dav1d.sh`.
+
+On the first run it creates `config.json` with default values and exits.
+
+| Key               | Meaning                                                                 |
+| ----------------- | ----------------------------------------------------------------------- |
+| `adb_binary`      | `adb` command or path (default `adb`)                                   |
+| `av2_android_dir` | The AV2-Android folder, which has `build/` and `src/` (default `../../AV2-Android`) |
+| `remote_dir`      | Folder on the phone for the executables (default `/data/local/tmp/av2`) |
+| `shared_dir`      | Folder in the phone's Downloads for the files to open (default `/sdcard/Download/av2`) |
+
+It asks for:
+
+1. The phone, from `adb devices` (shows the model, Android version, SoC and ABIs).
+2. The architecture. The default comes from the phone's ABI list (`arm64-v8a` → `arm64`, otherwise `armv7`).
+3. The decoders: `dav2d`, `dav1d` or both. Each one shows its source commit, or the build command if it isn't built.
+4. Whether to install checkasm, run it afterwards, and decode the `dav2d-test-data` conformance streams on the phone to check their MD5s.
+
+Each pushed file is made executable and its SHA-256 on the phone is compared with the local file. `VERSIONS` gets one line per decoder (name, source commit, arch, install date); lines of decoders not installed in this run are kept.
+
+The executables can't go to Downloads: Android mounts the shared storage (`/sdcard`) with `noexec`, so a binary there fails with "Permission denied". They stay in `remote_dir`, and the files you open on the phone go to `shared_dir`:
+
+```
+<remote_dir>/dav2d, dav1d                   decoders
+<remote_dir>/checkasm, checkasm-dav1d       checkasm of dav2d and dav1d
+<remote_dir>/VERSIONS                       read by the AV2-Android scripts
+<shared_dir>/VERSIONS.txt                   copy of VERSIONS
+<shared_dir>/streams/                       dav2d-test-data streams (if checked)
+<shared_dir>/instalacao_<date>.txt          versions, stream results and checkasm result of this run
+```
 
 ## `Analysis/`
 
